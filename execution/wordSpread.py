@@ -8,7 +8,7 @@ import os
 import sys
 
 from myPMosule import wordProcess
-
+#Example wordSpread.py gramnumber=1
 args=sys.argv
 
 gramnumber=int(args[1])

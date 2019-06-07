@@ -5,6 +5,7 @@ import openpyxl
 import numpy as np
 import sys
 
+#Example wordSpread.py gramnumber=1
 args=sys.argv
 gramnumber=int(args[1])
 gramname=str(args[1])

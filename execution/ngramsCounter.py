@@ -4,7 +4,7 @@ import pandas as pd
 import openpyxl
 import numpy as np
 import sys
-
+#Example wordSpread.py gramnumber=1
 args=sys.argv
 gramnumber=int(args[1])
 gramname=str(args[1])
@@ -35,14 +35,16 @@ for i in range(3):
     phcounter[i]=[[0 for phi in phindex[i]] for locate in locates]
 
 for pi,page in enumerate(pages): #各単語ごとにトライグラムの呼び出し
-    gramDf=pd.read_excel(rfgram.format(gramname,page),sheet_name=list(range(1,96)),header=0, index_col=0,dtype=str)
+    gramDf=pd.read_excel(rfgram.format(gramname,page),sheet_name=None,header=0, index_col=0,dtype=str)
+    if "想定系" in titens:
+        titens=titens.remove("想定系")
     for si,soutei in enumerate(titens):
         if gramnumber == 1:
-            phlists[1]=[" ".join(grams) for di,grams in enumerate(list(gramDf[si+1].values)) if di%2==0 and list(grams).count("-9")==0]
-            phlists[2]=[" ".join(grams) for di,grams in enumerate(list(gramDf[si+1].values)) if di%2==1 and list(grams).count("-9")==0]
+            phlists[1]=[" ".join(grams) for di,grams in enumerate(list(gramDf[soutei].values)) if di%2==0 and list(grams).count("-9")==0]
+            phlists[2]=[" ".join(grams) for di,grams in enumerate(list(gramDf[soutei].values)) if di%2==1 and list(grams).count("-9")==0]
         else:
-            phlists[1]=[" ".join(grams) for di,grams in enumerate(list(gramDf[si+1].values)) if di%2==1 and list(grams).count("-9")==0]
-            phlists[2]=[" ".join(grams) for di,grams in enumerate(list(gramDf[si+1].values)) if di%2==0 and list(grams).count("-9")==0]
+            phlists[1]=[" ".join(grams) for di,grams in enumerate(list(gramDf[titen].values)) if di%2==1 and list(grams).count("-9")==0]
+            phlists[2]=[" ".join(grams) for di,grams in enumerate(list(gramDf[titen].values)) if di%2==0 and list(grams).count("-9")==0]
         phlists[0]=phlists[1]+phlists[2]
         for j in range(3):
             for phi,gram in enumerate(phindex[j]):
