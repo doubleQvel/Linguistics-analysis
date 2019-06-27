@@ -24,7 +24,7 @@ class WordSpreader:
     def ngramize(self,text, n):
         text_list = list(text)
         if n > 1:
-            text_list = ["<s>"]+list(text)
+            text_list = ["<b>"]+list(text)
         if "." not in text_list:
             text_list.append(".")
         saku=text_list.index(".")
