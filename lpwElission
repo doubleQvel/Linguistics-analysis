@@ -13,8 +13,8 @@ gramname=str(args[1])
 #カレントディレクトリ
 currentpath=os.getcwd()
 basepath="/".join(currentpath[0:-1])
-# basepath=basepath+"/data/ryukyu/{}"
-basepath="/Users/kazuki/Documents/Study/test/ryukyu4/{}"
+basepath=basepath+"/data/ryukyu/{}"
+# basepath="/Users/kazuki/Documents/Study/data/ryukyu/{}"
 rflocate = basepath.format("parameter/locations.xlsx")
 rfword   = basepath.format("parameter/sheetlist.xlsx")
 rfgram   = basepath.format("gram{}/words/{}.xlsx")

@@ -29,11 +29,13 @@ cvclists=[]
 vcvlists=[]
 alllists=[]
 for pi,page in enumerate(pages): #各単語ごとにトライグラムの呼び出し
-    gramDf=pd.read_excel(rfgram.format(gramname,page),sheet_name=list(range(1,96)),header=0, index_col=0,dtype=str)
+    gramDf=pd.read_excel(rfgram.format(gramname,page),sheet_name=None,header=0, index_col=0,dtype=str)
+    if "想定系" in titens:
+        titens=titens.remove("想定系")
     for si,soutei in enumerate(titens):
-        sgrams=list(gramDf[si+1].values)
+        sgrams=list(gramDf[soutei].values)
         for ti,changed in enumerate(titens):
-            cgrams=list(gramDf[ti+1].values)
+            cgrams=list(gramDf[changed].values)
             if gramnumber == 1:
                 newcvclist=[" ".join(sgram)+"->"+" ".join(cgram) for di,(sgram,cgram) in enumerate(zip(sgrams,cgrams)) if di%2==0 and (list(sgram).count("-9")==0 and list(cgram).count("-9")==0)]
                 newvcvlist=[" ".join(sgram)+"->"+" ".join(cgram) for di,(sgram,cgram) in enumerate(zip(sgrams,cgrams)) if di%2==1 and (list(sgram).count("-9")==0 and list(cgram).count("-9")==0)]
