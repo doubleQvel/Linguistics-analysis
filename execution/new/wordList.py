@@ -14,10 +14,11 @@ args=sys.argv
 gramnumber=int(args[1])
 gramname=str(args[1])
 #カレントディレクトリ
+
 currentpath=os.getcwd()
-basepath="/".join(currentpath[0:-1])
-basepath=basepath+"/data/ryukyu/{}"
-# basepath="/Users/kazuki/Documents/Study/data/ryukyu/{}"
+basepath=currentpath.split("/")
+basepath="/".join(basepath[0:basepath.index("test")+1])+"/data/ryukyu4/{}"
+
 rf=basepath.format("rule2.xlsx")
 wf=basepath.format("gram{}/wordsList.xlsx".format(gramnumber))
 wf2=basepath.format("gram{}/patternList.xlsx".format(gramnumber))

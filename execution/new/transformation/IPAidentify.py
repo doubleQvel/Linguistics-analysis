@@ -17,7 +17,10 @@ import numpy as np
 import copy
 import sys
 import os
-basepath="/Users/kazuki/Documents/Study/test/data/ryukyu4/{}"
+
+currentpath=os.getcwd()
+basepath=currentpath.split("/")
+basepath="/".join(basepath[0:basepath.index("test")+1])+"/data/ryukyu4/{}"
 
 rfcnsts=basepath.format("parameter/consonants-list.csv")
 rfvws  =basepath.format("parameter/vowels-list.csv")
