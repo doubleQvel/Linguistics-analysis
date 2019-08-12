@@ -9,12 +9,13 @@ import os
 args=sys.argv
 gramnumber=int(args[1])
 gramname=str(args[1])
+
 #カレントディレクトリ
+
 currentpath=os.getcwd()
-currentpath=currentpath.split("/")
-basepath="/".join(currentpath[0:currentpath.index("test")+1])
-# basepath=basepath+"/data/ryukyu/{}"
-basepath="/Users/kazuki/Documents/Study/test/data/ryukyu4/{}"
+basepath=currentpath.split("/")
+basepath="/".join(basepath[0:basepath.index("test")+1])+"/data/ryukyu4/{}"
+
 rflocate = basepath.format("parameter/locations.xlsx")
 rfword   = basepath.format("parameter/sheetlist.xlsx")
 rfgram   = basepath.format("gram{}/words2/{}.xlsx")

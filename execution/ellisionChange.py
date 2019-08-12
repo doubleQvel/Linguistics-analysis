@@ -4,6 +4,7 @@ import pandas as pd
 import openpyxl
 import numpy as np
 import sys
+import os
 
 #Example wordSpread.py gramnumber=1
 args=sys.argv
@@ -12,9 +13,9 @@ gramname=str(args[1])
 
 #カレントディレクトリ
 currentpath=os.getcwd()
-basepath="/".join(currentpath[0:-1])
-# basepath=basepath+"/data/ryukyu/{}"
-basepath="/Users/kazuki/Documents/Study/test/ryukyu4/{}"
+basepath=currentpath.split("/")
+basepath="/".join(basepath[0:basepath.index("test")+1])+"data/ryukyu4/{}"
+
 rflocate = basepath.format("parameter/locations.xlsx")
 rfword   = basepath.format("parameter/sheetlist.xlsx")
 rfgram   = basepath.format("gram{}/words/{}.xlsx")

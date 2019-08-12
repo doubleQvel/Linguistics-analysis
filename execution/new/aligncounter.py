@@ -10,9 +10,8 @@ import os
 #カレントディレクトリ
 currentpath=os.getcwd()
 currentpath=currentpath.split("/")
-basepath="/".join(currentpath[0:currentpath.index("test")+1])
-# basepath=basepath+"/data/ryukyu/{}"
-basepath="/Users/kazuki/Documents/Study/test/data/ryukyu4/{}"
+basepath="/".join(currentpath[0:currentpath.index("test")+1])+"/data/ryukyu4/{}"
+
 rf= basepath.format("parameter/lpw2.xlsx")
 wf= basepath.format("aligncount.xlsx")
 

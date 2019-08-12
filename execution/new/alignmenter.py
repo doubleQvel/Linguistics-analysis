@@ -8,11 +8,11 @@ import os
 #Example wordSpread2.py
 
 #カレントディレクトリ
+
 currentpath=os.getcwd()
-currentpath=currentpath.split("/")
-basepath="/".join(currentpath[0:currentpath.index("test")+1])
-# basepath=basepath+"/data/ryukyu/{}"
-basepath="/Users/kazuki/Documents/Study/test/data/ryukyu4/{}"
+basepath=currentpath.split("/")
+basepath="/".join(basepath[0:basepath.index("test")+1])+"/data/ryukyu4/{}"
+
 rf= basepath.format("parameter/lpw2.xlsx")
 wf= basepath.format("alignment.xlsx")
 

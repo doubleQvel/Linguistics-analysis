@@ -21,7 +21,7 @@ import glob
 #カレントディレクトリ
 currentpath=os.getcwd()
 basepath=currentpath.split("/")
-basepath="/".join(basepath[0:-3])+"/data/ryukyu4/{}"
+basepath="/".join(basepath[0:basepath.index("test")+1])+"/data/ryukyu4/{}"
 
 # rfcnsts=basepath.format("parameter/consonants-list.csv")
 # rfvws  =basepath.format("parameter/vowels-list.csv")
