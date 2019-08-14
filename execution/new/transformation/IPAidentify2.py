@@ -29,8 +29,12 @@ rfvws  =basepath.format("parameter/vowels-list.csv")
 rfconvert=basepath.format("IPA組み合わせ変換.xlsx")
 rforg  =basepath.format("狩俣調査票単語別/{}.xlsx")
 
-cnstsDf=pd.read_csv(rfcnsts,sep="\t",index_col=0)
-vwsDf  =pd.read_csv(rfvws  ,sep="\t",index_col=0)
+# cnstsDf=pd.read_csv(rfcnsts,sep="\t",index_col=0)
+# vwsDf  =pd.read_csv(rfvws  ,sep="\t",index_col=0)
+convertDf=pd.read_excel(rfconvert,sheet_name=None,header=0)
+cnstsDf=convertDf["子音・代替文字対応表"]
+vwsDf=convertDf["母音・代替文字対応表"]
+
 oldFNs=glob.glob(basepath.format("狩俣調査票単語別/*"))
 FNs=[]
 for fn in oldFNs:
