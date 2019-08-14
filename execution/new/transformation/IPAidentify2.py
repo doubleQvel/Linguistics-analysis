@@ -26,6 +26,7 @@ basepath="/".join(basepath[0:basepath.index("test")+1])+"/data/ryukyu4/{}"
 
 rfcnsts=basepath.format("parameter/consonants-list.csv")
 rfvws  =basepath.format("parameter/vowels-list.csv")
+rfconvert=basepath.format("IPA組み合わせ変換.xlsx")
 rforg  =basepath.format("狩俣調査票単語別/{}.xlsx")
 
 cnstsDf=pd.read_csv(rfcnsts,sep="\t",index_col=0)
@@ -155,7 +156,7 @@ for fn in FNs:
     # print(symbols)
     splitOninDf=pd.DataFrame(splitOnin,index=oninDf.index,columns=symbols)
     bikouDf=pd.DataFrame(bikou,index=oninDf.index,columns=["備考"])
-    newOninDf=pd.concat([oninDf, splitOninDf, bikouDf], axis=1)
+    newOninDf=pd.concat([oninDf, bikouDf, splitOninDf], axis=1)
     newOninDf
     wfonin=basepath.format("狩俣調査票単語分割/{}.xlsx")
     with pd.ExcelWriter(wfonin.format(fn), engine='openpyxl') as writer:
