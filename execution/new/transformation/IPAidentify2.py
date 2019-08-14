@@ -107,7 +107,7 @@ for fn in FNs:
             # print("新しい子音の位置: {}".format(new_cnstsInd))
             # print("新しい母音の位置: {}".format(new_vwsInd))
 
-            if len(new_cnsts) == 0 and len(new_vws) == 0:
+            if (len(new_cnsts) == 0 and len(new_vws) == 0) or 0 not in new_cnstsInd and 0 not in new_vwsInd:
                 # 鼻腔にチェック
                 bikou[i]="認識可: {}  , 認識不可部分: {}".format(onin[0:len(onin)-len(new_onin)],new_onin)
                 bunkais=["-1"]
@@ -140,6 +140,11 @@ for fn in FNs:
                     bunkai=zeroInd[symind]
                 else:
                      bunkai=new_vws[new_vwsInd.index(0)]
+            else:
+                bikou[i]="認識可: {}  , 認識不可部分: {}".format(onin[0:len(onin)-len(new_onin)],new_onin)
+                bunkais=["-1"]
+                splitflag=False
+                break
             # print(bunkai)
 
             bunkais.append(new_onin[0:len(bunkai)])
