@@ -48,7 +48,7 @@ FNs=[fn.split(".")[0] for fn in FNs]
 for fn in FNs:
     orgDf=pd.read_excel(rforg.format(fn),header=0,index_col=0,dtype=str)
     print(orgDf.head)
-    maxlength=len(orgDf.iloc[0,3:-1])
+    maxlength=len(orgDf.iloc[0,3:])
     conphs=[["." for j in range(maxlength)] for  i in orgDf.index]
     ipas=list(cnstsDf.iloc[:,0].values)+list(vwsDf.iloc[:,0].values)
     trans=list(cnstsDf.iloc[:,1].values)+list(vwsDf.iloc[:,1].values)
@@ -72,8 +72,7 @@ for fn in FNs:
 
     symbols=["{}音".format(i+1) for i in range(maxlength)]
     convertDf=pd.DataFrame(conphs,index=orgDf.index,columns=symbols)
-    bikouDf=orgDf.iloc[:,[len(list(orgDf.columns))-1]]
-    newOninDf=pd.concat([orgDf.iloc[:,[0,1]], bikouDf, convertDf], axis=1)
+    newOninDf=pd.concat([orgDf.iloc[:,[0,1,2]], convertDf], axis=1)
 
     wfonin=basepath.format("狩俣調査票単語分割2/{}.xlsx")
     with pd.ExcelWriter(wfonin.format(fn), engine='openpyxl') as writer:
