@@ -109,7 +109,7 @@ for fn in FNs:
 
             if (len(new_cnsts) == 0 and len(new_vws) == 0) or 0 not in new_cnstsInd and 0 not in new_vwsInd:
                 # 鼻腔にチェック
-                bikou[i]="認識可: {}  , 認識不可部分: {}".format(onin[0:len(onin)-len(new_onin)],new_onin)
+                bikou[i]="認識可  {}   認識不可  {}".format(onin[0:len(onin)-len(new_onin)],new_onin)
                 bunkais=["-1"]
                 splitflag=False
                 break
@@ -141,7 +141,7 @@ for fn in FNs:
                 else:
                      bunkai=new_vws[new_vwsInd.index(0)]
             else:
-                bikou[i]="認識可: {}  , 認識不可部分: {}".format(onin[0:len(onin)-len(new_onin)],new_onin)
+                bikou[i]="認識可  {}   認識不可  {}".format(onin[0:len(onin)-len(new_onin)],new_onin)
                 bunkais=["-1"]
                 splitflag=False
                 break
@@ -166,8 +166,21 @@ for fn in FNs:
     splitOninDf=pd.DataFrame(splitOnin,index=oninDf.index,columns=symbols)
     bikouDf=pd.DataFrame(bikou,index=oninDf.index,columns=["備考"])
     newOninDf=pd.concat([oninDf, bikouDf, splitOninDf], axis=1)
-    newOninDf
+
     wfonin=basepath.format("狩俣調査票単語分割/{}.xlsx")
     with pd.ExcelWriter(wfonin.format(fn), engine='openpyxl') as writer:
         newOninDf.to_excel(writer,sheet_name="Sheet1")
 
+    # 幅検索
+    maxLen0=max([len(i)for i in list(newOninDf.index)])
+    maxLen1=max([len(i) for i in list(newOninDf.iloc[:,0])])
+    maxLen2=max([len(i) for i in list(newOninDf.iloc[:,1])])
+    maxLen3=max([len(i) for i in list(newOninDf.iloc[:,2])])
+    # 幅調整
+    book=openpyxl.load_workbook(wfonin.format(fn))
+    sheet = book['Sheet1']
+    sheet.column_dimensions["A"].width = maxLen0+3
+    sheet.column_dimensions["B"].width = maxLen1
+    sheet.column_dimensions["C"].width = maxLen2
+    sheet.column_dimensions["D"].width = maxLen3+2
+    book.save(wfonin.format(fn))

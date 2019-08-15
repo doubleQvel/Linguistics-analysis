@@ -78,3 +78,16 @@ for fn in FNs:
     with pd.ExcelWriter(wfonin.format(fn), engine='openpyxl') as writer:
         newOninDf.to_excel(writer,sheet_name="Sheet1")
 
+    # 幅検索
+    maxLen0=max([len(str(i))for i in list(newOninDf.index)])
+    maxLen1=max([len(str(i)) for i in list(newOninDf.iloc[:,0])])
+    maxLen2=max([len(str(i)) for i in list(newOninDf.iloc[:,1])])
+    maxLen3=max([len(str(i)) for i in list(newOninDf.iloc[:,2])])
+    # 幅調整
+    book=openpyxl.load_workbook(wfonin.format(fn))
+    sheet = book['Sheet1']
+    sheet.column_dimensions["A"].width = maxLen0+3
+    sheet.column_dimensions["B"].width = maxLen1
+    sheet.column_dimensions["C"].width = maxLen2
+    sheet.column_dimensions["D"].width = maxLen3+2
+    book.save(wfonin.format(fn))
