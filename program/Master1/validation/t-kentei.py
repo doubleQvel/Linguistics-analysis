@@ -42,7 +42,7 @@ def t_kentei(A, B):
     if t_value >= interval:
         flag = True
     # print("t検定終了")
-    print(flag)
+    # print(flag)
     return flag
 
 
@@ -76,7 +76,9 @@ if __name__ == "__main__":
     ptDf = ptDf.loc[~nonind, :]
     ptDf2 = ptDf
 
-    for i in range(0, 1):
+    # for i in range(8657, 8658):
+    tyushutu = []
+    for i in range(len(list(ptDf2.index))):
         kaku_yuui = []
         for j in range(len(list(ptDf2.columns))):
             for k in range(j, len(list(ptDf2.columns))):
@@ -86,4 +88,6 @@ if __name__ == "__main__":
                 kaku_yuui.append(yuui)
         print(list(ptDf2.index)[i])
         print(kaku_yuui.count(True))
+        if kaku_yuui.count(True) != 0:
+            tyushutu.append(list(ptDf2.index)[i])
     # print("結果:  {}".format(yuui))
